@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    message = cool_greet.display_time_and_greet("Sunil")
+    message = running.display_time_and_greet("Sunil")
     # Wrap in <pre> to preserve ASCII formatting
     return f"<pre>{message}</pre>"
 
