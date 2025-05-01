@@ -1,3 +1,4 @@
+# cool_greet.py
 from datetime import datetime
 import time
 import random
@@ -12,10 +13,11 @@ fonts = ["slant", "standard", "big", "block", "bubble", "digital", "doom", "isom
 colors = [Fore.RED, Fore.GREEN, Fore.CYAN, Fore.YELLOW, Fore.MAGENTA, Fore.BLUE]
 
 def cool_print(text, delay=0.03):
+    output = ''
     for char in text:
-        print(char, end='', flush=True)
+        output += char
         time.sleep(delay)
-    print()
+    return output
 
 def display_time_and_greet(name):
     # Get current time
@@ -29,28 +31,19 @@ def display_time_and_greet(name):
     # Create ASCII banner
     banner = pyfiglet.figlet_format(f"Hi {name}!", font=font)
 
-    # Print stylish header
-    print(Style.BRIGHT + Fore.LIGHTWHITE_EX + "="*70)
-    cool_print(Fore.LIGHTCYAN_EX + "🌟 Welcome to the Python Fun Time Console 🌟", 0.05)
-    print(Fore.LIGHTWHITE_EX + "="*70)
-
-    # Show date and time
-    cool_print(Fore.LIGHTGREEN_EX + f"🕒 Current Date & Time: {formatted_time}", 0.02)
-    print()
-
-    # Show greeting banner
-    print(color + banner)
-
-    # Extra ASCII art
-    cool_print(Fore.LIGHTYELLOW_EX + r"""
+    # Start building the response
+    result = ""
+    result += "=" * 70 + "\n"
+    result += cool_print(Fore.LIGHTCYAN_EX + "🌟 Welcome to the Python Fun Time Console 🌟", 0.05) + "\n"
+    result += "=" * 70 + "\n"
+    result += cool_print(Fore.LIGHTGREEN_EX + f"🕒 Current Date & Time: {formatted_time}", 0.02) + "\n\n"
+    result += color + banner + "\n"
+    result += cool_print(Fore.LIGHTYELLOW_EX + r"""
         (\_/)
         ( •_•)
        / >🍪   Here's a cookie for you!
-    """, 0.01)
+    """, 0.01) + "\n"
+    result += "=" * 70 + "\n"
+    result += cool_print(Fore.LIGHTMAGENTA_EX + "Have a fun-tastic day, Susan! 😎", 0.04) + "\n"
 
-    print(Fore.LIGHTWHITE_EX + "="*70)
-    cool_print(Fore.LIGHTMAGENTA_EX + "Have a fun-tastic day, Sunil! 😎", 0.04)
-
-# Run it
-display_time_and_greet("Sunil")
-
+    return result
